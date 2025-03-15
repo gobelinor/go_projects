@@ -30,8 +30,7 @@ var listCmd = &cobra.Command{
 		}
 		w := tabwriter.NewWriter(os.Stdout, 4, 0, 2, ' ', 0)
 		defer w.Flush()
-		fmt.Println("\n📋 LISTE DES TÂCHES 📋")
-		fmt.Println("───────────────────────────────────────────────────────")
+		fmt.Println("\n📋 LISTE DES TÂCHES 📋\n")
 		fmt.Fprintln(w, "ID\tTask\tStatus\tCreated")
 		for _, record := range records[1:] {
 			// Remplacer "true" par ✅ et "false" par ❌
