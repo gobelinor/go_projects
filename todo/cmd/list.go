@@ -35,10 +35,16 @@ var listCmd = &cobra.Command{
 		fmt.Fprintln(w, "ID\tTask\tStatus\tCreated")
 		for _, record := range records[1:] {
 			// Remplacer "true" par ✅ et "false" par ❌
+			status := ""
+			if record[2] == "true" {
+				status = "✅"
+			} else {
+				status = "❌"
+			}
 			layout := "2006-01-02 15:04:05"
 			date, _ := time.ParseInLocation(layout, record[3], time.Local)
 			elapsed := timediff.TimeDiff(date)
-			fmt.Fprintf(w, "%s\t%s\t%s\t%s\n", record[0], record[1], record[2], elapsed)
+			fmt.Fprintf(w, "%s\t%s\t%s\t%s\n", record[0], record[1], status, elapsed)
 		}
 		w.Flush()
 		// fmt.Println("\n")
